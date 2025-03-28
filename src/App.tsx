@@ -1,5 +1,5 @@
-import { api } from "@/services/api";
 import { useState, useEffect } from "react";
+import { useData } from "./hooks/useData";
 
 type user = {
   name: string;
@@ -8,23 +8,21 @@ type user = {
 
 function App() {
   const [user, setUser] = useState<user | null>(null);
+  const { data, loading, getUser } = useData();
 
   useEffect(() => {
-    api
-      .get("/users/edcabralc") // Troque "octocat" pelo username desejado
-      .then(response => setUser(response.data))
-      .catch(error => console.error("Erro ao buscar usuário", error));
+    const loadData = async () => await getUser();
+    loadData();
   }, []);
 
   return (
     <div>
-      {user ? (
+      {loading && <p>Carregando...</p>}
+      {data && !loading && (
         <div>
-          <h1>{user.name}</h1>
-          <img src={user.avatar_url} alt="Avatar" width={100} />
+          <h1>{data.name}</h1>
+          <h1>{data.avatar_url}</h1>
         </div>
-      ) : (
-        <p>Carregando...</p>
       )}
     </div>
   );
