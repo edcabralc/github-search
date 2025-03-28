@@ -1,30 +1,24 @@
-import { useState, useEffect } from "react";
-import { useData } from "./hooks/useData";
-
-type user = {
-  name: string;
-  avatar_url: string;
-};
+import { useData } from "@/hooks/useData";
 
 function App() {
-  const [user, setUser] = useState<user | null>(null);
-  const { data, loading, getUser } = useData();
-
-  useEffect(() => {
-    const loadData = async () => await getUser();
-    loadData();
-  }, []);
+  const { data, loading } = useData();
 
   return (
-    <div>
-      {loading && <p>Carregando...</p>}
-      {data && !loading && (
-        <div>
-          <h1>{data.name}</h1>
-          <h1>{data.avatar_url}</h1>
-        </div>
-      )}
-    </div>
+    <>
+      <div>Usuário:</div>
+
+      <div>
+        {loading && !data ? (
+          <div>Carregando...</div>
+        ) : (
+          <div>
+            <p>{data?.name}</p>
+            <p> {data?.bio}</p>
+            <img src={data?.avatar_url} alt="" />
+          </div>
+        )}
+      </div>
+    </>
   );
 }
 
