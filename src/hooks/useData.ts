@@ -40,11 +40,24 @@ const useData = () => {
           console.error(error);
           setError(` ${error.message}`);
           setLoading(false);
+          setData(null);
         }
       }
     }
   };
-  return { data, error, loading, getUser };
+
+  const resetSearch = () => {
+    if (abortController) {
+      abortController.abort();
+    }
+
+    setLoading(false);
+    setError(null);
+    setData(null);
+    setAbortController(null);
+  };
+
+  return { data, error, loading, getUser, resetSearch };
 };
 
 export { useData };

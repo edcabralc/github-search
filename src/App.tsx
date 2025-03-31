@@ -1,15 +1,20 @@
-import { useData } from "@/hooks/useData";
 import { useForm } from "react-hook-form";
+import { useData } from "@/hooks/useData";
 import { User } from "@/types/user";
 
-function App() {
-  const { data, loading, error, getUser } = useData();
-  const { register, handleSubmit, watch } = useForm<User>();
+const App = () => {
+  const { data, loading, error, getUser, resetSearch } = useData();
+  const { register, handleSubmit, watch, reset } = useForm<User>();
   const userName = watch("name");
 
   const onSubmit = () => {
     if (!userName) return;
     getUser(userName);
+  };
+
+  const onReset = () => {
+    reset();
+    resetSearch();
   };
 
   return (
@@ -18,7 +23,7 @@ function App() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <input type="text" {...register("name")} />
         <button type="submit">Buscar</button>
-        <button type="reset">Cancelar</button>
+        <button onClick={onReset}>Cancelar</button>
       </form>
 
       <div>
@@ -26,19 +31,19 @@ function App() {
           <div>Carregando...</div>
         ) : (
           <div>
+            {error && <p>{error}</p>}
             {!error && data && (
               <>
-                <p>{data?.name}</p>
-                <p> {data?.bio}</p>
-                <img src={data?.avatar_url} alt="" />
+                <p>{data?.name ? data.name : "Nome não cadastrado"}</p>
+                <p>{data?.bio ? data.bio : "Bio não cadastrada"}</p>
+                <img src={data?.avatar_url} alt="Imagem de perfil" />
               </>
             )}
-            {error && <p>{error}</p>}
           </div>
         )}
       </div>
     </>
   );
-}
+};
 
 export default App;
