@@ -1,13 +1,15 @@
-import { CardBody } from "@/components/card/card-body";
-import { CardBio } from "@/components/card/card-bio";
-import { CardImage } from "@/components/card/card-image";
-import { CardName } from "@/components/card/card-name";
+import style from "@/components/card/card.module.css";
+import { User } from "@/components/user";
 
-const Card = {
-  Bio: CardBio,
-  Name: CardName,
-  Body: CardBody,
-  Image: CardImage,
+const Card = () => {
+  return (
+    <div className={style.card}>
+      {/* <User.Image url={avatar} />
+      info
+      <User.Name name={name} />
+      <User.Bio bio={bio} /> */}
+    </div>
+  );
 };
 
 export { Card };

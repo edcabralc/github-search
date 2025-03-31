@@ -9,15 +9,16 @@ const Form = () => {
   const { getUser, resetSearch } = useData();
   const userName = watch("name");
 
-  const onSubmit = () => {
-    if (!userName) return;
-    getUser(userName);
+  const onSubmit = async () => {
+    // if (!userName) return;
+    const testLog = await getUser(userName);
+    console.log(userName, testLog);
   };
 
-  // const onReset = () => {
-  //   reset();
-  //   resetSearch();
-  // };
+  const onReset = () => {
+    reset();
+    resetSearch();
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={style.inputContainer}>
@@ -32,7 +33,7 @@ const Form = () => {
           <img src="/search-icon.svg" />
         </button>
       </div>
-      {/* <button onClick={onReset}>Cancelar</button> */}
+      <button onClick={onReset}>Cancelar</button>
     </form>
   );
 };
