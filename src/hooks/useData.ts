@@ -1,20 +1,32 @@
 import { fetchData } from "@/services/fetch-data";
 import { User } from "@/types/user";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const useData = () => {
   const [data, setData] = useState<User | null>(null);
-  const [error, setError] = useState<string | null>("");
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [abortController, setAbortController] =
+    useState<AbortController | null>(null);
 
-  const getUser = async () => {
+  const getUser = async (user: string) => {
     setLoading(true);
+    setError(null);
+
+    if (abortController) {
+      abortController.abort();
+    }
+
+    const controller = new AbortController();
+    setAbortController(controller);
 
     try {
-      const response = await fetchData("/users/edcabralc");
+      const response = await fetchData(`/users/${user}`, {
+        signal: controller.signal,
+      });
 
       if (response === undefined) {
-        throw new Error("Erro ao buscar usuário");
+        throw new Error("Usuário não localizado");
       }
 
       console.log(response);
@@ -22,17 +34,30 @@ const useData = () => {
       setLoading(false);
     } catch (error: unknown) {
       if (error instanceof Error) {
-        setError(`Erro ao buscar usuário ${error.message}`);
-        setLoading(false);
+        if (error.name === "AbortError") {
+          console.log("Requisição abortada");
+        } else {
+          console.error(error);
+          setError(` ${error.message}`);
+          setLoading(false);
+          setData(null);
+        }
       }
     }
   };
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  const resetSearch = () => {
+    if (abortController) {
+      abortController.abort();
+    }
 
-  return { data, error, loading, getUser };
+    setLoading(false);
+    setError(null);
+    setData(null);
+    setAbortController(null);
+  };
+
+  return { data, error, loading, getUser, resetSearch };
 };
 
 export { useData };
