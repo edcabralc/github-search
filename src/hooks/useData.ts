@@ -26,7 +26,9 @@ const useData = () => {
       });
 
       if (response === undefined) {
-        throw new Error("Usuário não localizado");
+        throw new Error(
+          "Nenhum perfil foi encontrado com ese nome de usuário. Tente novamente"
+        );
       }
 
       console.log(response);

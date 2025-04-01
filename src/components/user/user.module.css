@@ -1,0 +1,46 @@
+.userWrapper {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  width: 100%;
+}
+
+.userImage {
+  width: 220px;
+  height: 220px;
+  flex: 0 0 220px;
+  border-radius: 100%;
+}
+
+.userImage img {
+  width: 220px;
+  height: 220px;
+  border-radius: 100%;
+  object-fit: cover;
+  border: solid 2px #005cff;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.userName {
+  font-family: Nunito Sans;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  color: #005cff;
+}
+
+.userBio {
+  font-family: Nunito Sans;
+  font-weight: 300;
+  font-size: 15px;
+  line-height: 130%;
+  letter-spacing: 0%;
+  color: #000;
+}

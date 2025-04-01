@@ -1,0 +1,42 @@
+.inputContainer {
+  display: flex;
+  gap: 2px;
+  max-width: 503px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.inputGroup {
+  width: inherit;
+  height: 62px;
+  display: flex;
+}
+
+.input {
+  background-color: transparent;
+  border-color: transparent;
+  outline: transparent;
+  flex: 1;
+  padding-left: 16px;
+  font-size: 20px;
+  font-family: "Nunito sants", sans-serif;
+  line-height: 100%;
+  font-weight: 600;
+}
+
+.btn {
+  background-color: #005cff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: solid 1px #fff;
+  width: 62px;
+  height: 62px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #2b46c9;
+}
