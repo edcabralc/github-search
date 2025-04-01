@@ -1,23 +1,22 @@
-import { useData } from "@/hooks/useData";
 import { User } from "@/types/user";
 import React from "react";
 import { useForm } from "react-hook-form";
 import style from "@/components/form/form.module.css";
 
-const Form = () => {
-  const { register, handleSubmit, watch, reset } = useForm<User>();
-  const { getUser, resetSearch } = useData();
+type Form = {
+  action: (name: string) => void;
+  resetAction: () => void;
+};
+
+const Form = ({ action }: Form) => {
+  const { register, handleSubmit, watch } = useForm<User>();
+
   const userName = watch("name");
 
   const onSubmit = async () => {
-    // if (!userName) return;
-    const testLog = await getUser(userName);
-    console.log(userName, testLog);
-  };
-
-  const onReset = () => {
-    reset();
-    resetSearch();
+    if (!userName) return;
+    await action(userName);
+    // console.log(userName, testLog);
   };
 
   return (
@@ -33,7 +32,6 @@ const Form = () => {
           <img src="/search-icon.svg" />
         </button>
       </div>
-      <button onClick={onReset}>Cancelar</button>
     </form>
   );
 };

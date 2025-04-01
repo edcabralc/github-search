@@ -1,13 +1,14 @@
 import { useData } from "@/hooks/useData";
-
 import { Container } from "@/components/container";
 import { Card } from "@/components/card";
 import { Form } from "@/components/form";
 import { Header } from "@/components/header";
 import { Loading } from "@/components/loading";
+import { Error } from "@/components/error";
+import { User } from "@/components/user";
 
 const App = () => {
-  const { data, loading, error } = useData();
+  const { data, loading, error, getUser, resetSearch } = useData();
   console.log(data, loading, error);
 
   return (
@@ -15,9 +16,12 @@ const App = () => {
       <main>
         <Container>
           <Header />
-          <Form />
-          {loading ? <Loading /> : <Card />}
-          {error ?? <p>error...</p>}
+          <Form action={getUser} resetAction={resetSearch} />
+          <Card>
+            {!data && loading && <Loading />}
+            {error ?? <Error error={error} />}
+            {data && <User user={data} />}
+          </Card>
         </Container>
       </main>
     </>
