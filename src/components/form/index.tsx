@@ -1,5 +1,4 @@
 import { User } from "@/types/user";
-import React from "react";
 import { useForm } from "react-hook-form";
 import style from "@/components/form/form.module.css";
 
@@ -15,8 +14,7 @@ const Form = ({ action }: Form) => {
 
   const onSubmit = async () => {
     if (!userName) return;
-    await action(userName);
-    // console.log(userName, testLog);
+    action(userName);
   };
 
   return (
