@@ -1,9 +1,9 @@
 import { fetchData } from "@/services/fetch-data";
-import { User } from "@/types/user";
+import { UserType } from "@/types/user";
 import { useState } from "react";
 
 const useData = () => {
-  const [data, setData] = useState<User | null>(null);
+  const [data, setData] = useState<UserType | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [abortController, setAbortController] =
@@ -27,7 +27,7 @@ const useData = () => {
 
       if (response === undefined) {
         throw new Error(
-          "Nenhum perfil foi encontrado com ese nome de usuário. Tente novamente"
+          "Nenhum perfil foi encontrado com ese nome de usuário.\nTente novamente"
         );
       }
 

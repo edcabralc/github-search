@@ -22,7 +22,7 @@
 html,
 body {
   height: 100%;
-  /* background-color: #1f1f1f; */
+  background-color: #1f1f1f;
 }
 body {
   line-height: 1.5;
@@ -49,14 +49,37 @@ main {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  z-index: -300;
 }
 
 .square {
-  /* background: url("/square.png"); */
-  background-color: red;
-  width: 239;
-  height: 225;
+  background: url("/squares.png");
+  /* background-color: red; */
+  width: 239px;
+  height: 225px;
   top: 28px;
   left: 71px;
-  position: relative;
+  position: absolute;
+  z-index: -10;
+}
+
+.circle-1,
+.circle-2 {
+  background-color: url("/ellipse.png");
+  background-color: red;
+  z-index: -18;
+  position: absolute;
+}
+.circle-1 {
+  width: 888px;
+  height: 888px;
+  top: -268px;
+  right: 0px;
+}
+
+.circle-2 {
+  width: 674px;
+  height: 674px;
+  top: 198px;
+  left: -415px;
 }

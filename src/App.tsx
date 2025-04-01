@@ -9,7 +9,6 @@ import { User } from "@/components/user";
 
 const App = () => {
   const { data, loading, error, getUser, resetSearch } = useData();
-  console.log(data, loading, error);
 
   return (
     <>
@@ -17,11 +16,22 @@ const App = () => {
         <Container>
           <Header />
           <Form action={getUser} resetAction={resetSearch} />
-          <Card>
-            {!data && loading && <Loading />}
-            {error ?? <Error error={error} />}
-            {data && <User user={data} />}
-          </Card>
+
+          {error && (
+            <Card>
+              <Error error={error} />
+            </Card>
+          )}
+          {!data && loading && (
+            <Card>
+              <Loading />
+            </Card>
+          )}
+          {data && (
+            <Card>
+              <User user={data} />
+            </Card>
+          )}
         </Container>
       </main>
     </>
