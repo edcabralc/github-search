@@ -1,4 +1,4 @@
-import { User } from "@/types/user";
+import { UserType } from "@/types/user";
 import { useForm } from "react-hook-form";
 import style from "@/components/form/form.module.css";
 
@@ -8,13 +8,14 @@ type Form = {
 };
 
 const Form = ({ action }: Form) => {
-  const { register, handleSubmit, watch } = useForm<User>();
+  const { register, handleSubmit, watch, reset } = useForm<UserType>();
 
   const userName = watch("name");
 
   const onSubmit = async () => {
     if (!userName) return;
     action(userName);
+    reset();
   };
 
   return (

@@ -33,6 +33,10 @@
   font-size: 20px;
   line-height: 100%;
   letter-spacing: 0%;
+}
+
+.urlProfile {
+  text-decoration: none;
   color: #005cff;
 }
 
@@ -43,4 +47,10 @@
   line-height: 130%;
   letter-spacing: 0%;
   color: #000;
+}
+
+@media (max-width: 730px) {
+  .userWrapper {
+    flex-direction: column;
+  }
 }

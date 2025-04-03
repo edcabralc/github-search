@@ -1,5 +1,5 @@
 import { api } from "@/services/api";
-import { User } from "@/types/user";
+import { UserType } from "@/types/user";
 import { AxiosRequestConfig, AxiosResponse } from "axios";
 
 const fetchData = async (
@@ -7,7 +7,7 @@ const fetchData = async (
   configs: AxiosRequestConfig = {}
 ) => {
   try {
-    const response: AxiosResponse<User> = await api.get(endpoint, configs);
+    const response: AxiosResponse<UserType> = await api.get(endpoint, configs);
     return response.data;
   } catch (error) {
     console.error(error);

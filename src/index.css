@@ -22,11 +22,10 @@
 html,
 body {
   height: 100%;
-  /* background-color: #1f1f1f; */
 }
 body {
-  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  overflow: hidden;
 }
 img,
 svg {
@@ -45,18 +44,31 @@ h2 {
 
 main {
   display: flex;
+  background-color: #1f1f1f;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
 }
 
-.square {
-  /* background: url("/square.png"); */
-  background-color: red;
-  width: 239;
-  height: 225;
-  top: 28px;
-  left: 71px;
-  position: relative;
+.circle-1,
+.circle-2 {
+  background: radial-gradient(circle at 50% 50%, #005cff, #00000000);
+  opacity: 0.7;
+  filter: blur(80px);
+  position: absolute;
+}
+
+.circle-1 {
+  width: 888px;
+  height: 888px;
+  top: -396px;
+  left: 954px;
+}
+
+.circle-2 {
+  width: 674px;
+  height: 674px;
+  top: 198px;
+  left: -415px;
 }

@@ -1,9 +1,10 @@
 .errorMessage {
-  font-family: Nunito Sans;
+  font-family: "Nunito Sans";
   font-weight: 400;
   font-size: 20px;
-  line-height: 100%;
+  line-height: 125%;
   letter-spacing: 0%;
   text-align: center;
   color: #ff0000;
+  max-width: 45ch;
 }
