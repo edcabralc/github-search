@@ -21,13 +21,13 @@ const useData = () => {
     setAbortController(controller);
 
     try {
-      const response = await fetchData(`/users/${user}`, {
+      const response = await fetchData(`/users/${user.trim()}`, {
         signal: controller.signal,
       });
 
       if (response === undefined) {
         throw new Error(
-          "Nenhum perfil foi encontrado com ese nome de usuário.\nTente novamente"
+          "Nenhum perfil foi encontrado com ese nome de usuário. Tente novamente"
         );
       }
 

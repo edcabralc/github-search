@@ -48,3 +48,9 @@
   letter-spacing: 0%;
   color: #000;
 }
+
+@media (max-width: 730px) {
+  .userWrapper {
+    flex-direction: column;
+  }
+}
